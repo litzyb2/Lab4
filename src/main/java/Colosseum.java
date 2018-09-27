@@ -1,3 +1,4 @@
+import java.sql.SQLOutput;
 import java.util.Scanner;
 
 /**
@@ -19,6 +20,11 @@ public class Colosseum {
      * The maximum number of rounds we will let the Pokemon battle.
      */
     static final int MAX_NUM_ROUNDS = 10;
+
+    /**
+     * JAVA DOC.
+     */
+    static final int DEFENSE_LEVEL = 23;
 
     /**
      * The first Pokemon we will be fighting.
@@ -74,6 +80,28 @@ public class Colosseum {
     public static Pokemon buildPokemon() {
         Pokemon tempPokemon = new Pokemon();
         return tempPokemon;
+
+        System.out.println("Name your Pokemon");
+        String pokename = myScan.next();
+
+        System.out.println("How many hit points will it have? (1-50)");
+        String pointHits = myScan.next();
+        while (pointHits > MAX_HIT_POINTS || pointHits < 1) {
+            System.out.println("Try again");
+        }
+
+        System.out.println("What do you want your attack level to be? (1-49)");
+        String levelAttack = myScan.next();
+        while (levelAttack > MAX_HIT_POINTS || levelAttack < 1) {
+            System.out.print("Try Again");
+        }
+
+        System.out.println("What do you want your defense level to be? (1-23)");
+        String levelDefense = myScan.next();
+        while (levelDefense > DEFENSE_LEVEL || levelDefense < 1) {
+            System.out.println("Try Again");
+        }
+        Pokemon character = new Pokemon(pokename, pointHits, levelAttack, levelDefense)
     }
 
     /**
@@ -90,7 +118,12 @@ public class Colosseum {
      * Implement this function.
      */
     public static void printWhoIsAhead() {
-        System.out.println("Implement me!");
+        if (firstPokemon.hitPoints > secondPokemon.hitPoints) {
+            System.out.println("first Pokemon is ahead");
+        }
+        if (secondPokemon.hitPoints > firstPokemon.hitPoints) {
+            System.out.println("second Pokemon is ahead");
+        }
     }
 
     /**
@@ -101,7 +134,12 @@ public class Colosseum {
      * Write this function.
      */
     public static void determineWinner() {
-        System.out.println("Implement me!");
+        if (firstPokemon.hitPoints == 0) {
+            System.out.println("second pokemon won");
+        }
+        if (secondPokemon.hitPoints == 0) {
+            System.out.println("second pokemon won");
+        }
     }
 
     /**
